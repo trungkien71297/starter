@@ -25,6 +25,13 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+require("nvim-tree").setup {
+  view = {
+    width = 50,
+    side = "left",
+  },
+}
+
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
@@ -35,3 +42,10 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.wo.relativenumber = true
+
+vim.opt.laststatus = 3
+
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
