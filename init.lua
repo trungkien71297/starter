@@ -25,6 +25,16 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+require("nvim-tree").setup {
+  view = {
+    width = 50,
+    side = "left",
+  },
+  update_focused_file = {
+    enable = true,
+  },
+}
+
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
@@ -35,3 +45,34 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.wo.relativenumber = true
+
+vim.opt.laststatus = 3
+
+-- Folding configuration
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
+-- Create autocommand for Dart files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "dart",
+  callback = function()
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+    -- Ensure treesitter folding is enabled for Dart
+    require("nvim-treesitter.configs").setup {
+      fold = {
+        enable = true,
+      },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+    }
+  end,
+})
