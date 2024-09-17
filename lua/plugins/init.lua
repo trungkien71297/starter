@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -11,6 +11,12 @@ return {
     config = function()
       require "configs.lspconfig"
     end,
+  },
+
+  -- Load which-key immediately so leader key panel shows on first press
+  {
+    "folke/which-key.nvim",
+    lazy = false,
   },
 
   -- test new blink
