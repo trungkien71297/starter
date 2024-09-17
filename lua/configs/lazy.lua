@@ -4,10 +4,10 @@ return {
 
   ui = {
     icons = {
-      ft = "",
-      lazy = "󰂠 ",
-      loaded = "",
-      not_loaded = "",
+      ft = "",
+      lazy = "",
+      loaded = "",
+      not_loaded = "",
     },
   },
 
@@ -41,6 +41,12 @@ return {
         "compiler",
         "bugreport",
         "ftplugin",
+        "fzf",
+        "osc52",
+        "shada",
+        "spellfile",
+        "man",
+        "matchparen",
       },
     },
   },
